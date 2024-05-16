@@ -66,29 +66,10 @@ nota = {
 	"Yuri" = 1.89
 }
 
+lista_ = []
+
 #lista de jogadores com nota
-lista = [
-    ("PV", 4.85),
-    ("Manoel", 4.52),
-    ("Julio Rocha", 4.46),
-    ("Marcelo", 4.35),
-    ("Rodrigo Saldanha", 4.35),
-    ("Negão", 4.30),
-    ("Junior", 4.19),
-    ("Roberto", 4.02),
-    ("Barbosa", 3.81),
-    ("Gustavo", 3.63),
-    ("Henrique", 3.19),
-    ("Ícaro", 3.11),
-    ("Morvan", 2.96),
-    ("Capota", 2.50),
-    ("Pedro Olímpio", 2.48),
-    ("Assis", 2.46),
-    ("Eduardo", 2.35),
-    ("Davi", 1.78),
-    ("Décio", 1.71),
-    ("Yago", 1.29)
-]
+lista = [(i, nota[i]) for i in lista_]
 
 #quantidade de times
 n = 4
