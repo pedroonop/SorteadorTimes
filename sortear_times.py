@@ -66,6 +66,11 @@ nota = {
 	"Yuri": 1.89
 }
 
+for i in lista_:
+    if i not in nota:
+        print(i, "nao tem nota.")
+        exit()
+
 lista_ = []
 
 #lista de jogadores com nota
