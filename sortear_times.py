@@ -34,6 +34,7 @@ nota = {
 	"Gustavo": 4.0,
 	"Henrique": 3.11,
 	"Icaro": 3.22,
+	"Israel": 3.67,
 	"Jaco": 1.78,
 	"Jhonny": 4.56,
 	"John Barber": 4.33,
@@ -50,6 +51,7 @@ nota = {
 	"Mateus Felipe": 1.22,
 	"Matheus Felipe": 3.44,
 	"Matheus Maia": 3.22,
+	"Matheus Pereira": 4.44,
 	"Morvan": 3.0,
 	"Nicassio": 4.78,
 	"Pedro Henrique": 1.67,
@@ -60,18 +62,19 @@ nota = {
 	"Roberto": 3.67,
 	"Rodrigo Almeida": 1.78,
 	"Rodrigo Saldanha": 4.78,
+	"Romulo": 2.33,
 	"Sergio": 4.67,
 	"Vinicius": 2.22,
 	"Yago": 1.22,
 	"Yuri": 1.89
 }
 
+lista_ = []
+
 for i in lista_:
     if i not in nota:
         print(i, "nao tem nota.")
         exit()
-
-lista_ = []
 
 #lista de jogadores com nota
 lista = [(i, nota[i]) for i in lista_]
