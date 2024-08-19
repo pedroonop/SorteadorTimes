@@ -54,6 +54,7 @@ nota = {
 	"Matheus Pereira": 4.44,
 	"Morvan": 3.0,
 	"Nicassio": 4.78,
+	"Pablu": 3.8,
 	"Pedro Henrique": 1.67,
 	"Pedro Lyvio": 2.75,
 	"Pedro Olimpio": 2.67,
