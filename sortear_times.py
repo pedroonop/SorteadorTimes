@@ -23,6 +23,7 @@ def sortear(lista, n, k):
 
 nota = {
 	"Assis": 2.44,
+	"Avelino": 4.0,
 	"Cabral": 4.67,
 	"Cadu": 1.56,
 	"Davi": 1.78,
@@ -48,10 +49,12 @@ nota = {
 	"Lucca": 2.56,
 	"Manoel": 4.89,
 	"Marcelo": 4.67,
+	"Marcos Vinicius": 3.5,
 	"Mateus Felipe": 1.22,
 	"Matheus Felipe": 3.44,
 	"Matheus Maia": 3.22,
 	"Matheus Pereira": 4.44,
+	"Messin": 4.2,
 	"Morvan": 3.0,
 	"Nicassio": 4.78,
 	"Pablu": 3.8,
