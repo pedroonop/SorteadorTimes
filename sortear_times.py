@@ -48,7 +48,7 @@ nota = {
 	"Jhony": 4.00,
 	"Julio": 4.67,
 	"Jaco": 1.75,
-	"Pergyo": 3.00,
+	"Perygo": 3.00,
 	"Cadu": 1.67,
 	"Decio": 1.50,
 	"Gabriel": 2.17,
