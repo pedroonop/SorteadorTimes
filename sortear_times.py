@@ -70,7 +70,7 @@ nota = {
 	"Luan": 3.80,
 	"John": 3.78,
 	"Falcao": 4.60,
-	"Avelino": 4.00,
+	"Avelino": 4.80,
 	"Gustavo": 3.80
 }
 
