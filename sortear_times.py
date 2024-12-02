@@ -72,9 +72,10 @@ nota = {
 	"Falcao": 4.60,
 	"Avelino": 4.80,
 	"Gustavo": 3.80,
-	"Uesley": 4.3,
-	"Natan": 3.6,
-	"Magno": 1.5
+	"Uesley": 4.30,
+	"Natan Oliveira": 3.60,
+	"Magno": 1.50,
+	"Lucas Benicio": 2.20
 }
 
 lista_ = []
