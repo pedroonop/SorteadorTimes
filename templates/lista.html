@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sorteio</title>
+</head>
+<body>
+	<h1>Notas dos todos os jogadores</h1>
+	<ul>
+		{% for chave, valor in dados.items() %}
+			<li><strong>{{ chave }}:</strong> {{ valor }}</li>
+		{% endfor %}
+	</ul>
+
+	<h1>Digite o nome dos jogadores participantes</h1>
+	<form method="post">
+		{% for _ in range(times*quantidade) %}
+			<ul>
+				<input type="text" name="jogador">
+			</ul>
+		{% endfor %}
+		<button type="submit">Enviar</button>
+	</form>
+</body>
+</html>
