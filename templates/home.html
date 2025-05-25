@@ -2,10 +2,76 @@
 <html>
 <head>
 	<title>Sorteador de Times</title>
+	<script>
+		function gerarCampos() {
+			const container = document.getElementById('campos');
+			const times = parseInt(document.getElementById('n').value) || 0;
+			const quantidade = parseInt(document.getElementById('k').value) || 0;
+
+            // Limpa campos antigos
+			container.innerHTML = '';
+
+            // Cria novos inputs
+			for (let i = 0; i < times * quantidade; i++) {
+				const inputJogador = document.createElement('input');
+				inputJogador.type = 'text';
+				inputJogador.name = 'jogador_' + i;
+				inputJogador.placeholder = 'Jogador ' + (i + 1);
+
+				const inputNota = document.createElement('input');
+				inputNota.type = 'text';
+				inputNota.name = 'nota_' + i;
+				inputNota.placeholder = 'Nota ' + (i + 1);
+
+
+				container.appendChild(inputJogador);
+				container.appendChild(inputNota);
+				container.appendChild(document.createElement('br'));
+			}
+		}
+
+		function baixarJSON() {
+		    const n = document.getElementById('n').value;
+		    const k = document.getElementById('k').value;
+
+		    const dados = {};
+		    for (let i = 0; i < n * k; i++) {
+		        const nome = document.querySelector(`[name='jogador_${i}']`)?.value || '';
+		        const nota = document.querySelector(`[name='nota_${i}']`)?.value || '';
+		        if (nome) {
+		            dados[nome] = parseFloat(nota) || 0;
+		        }
+		    }
+
+		    const jsonString = JSON.stringify(dados, null, 4);
+		    const blob = new Blob([jsonString], { type: 'application/json' });
+		    const url = URL.createObjectURL(blob);
+
+		    const a = document.createElement('a');
+		    a.href = url;
+		    a.download = 'notas.json';
+		    a.click();
+
+		    URL.revokeObjectURL(url);
+		}
+	</script>
 </head>
 <body>
 	<h1>Sorteador de Times</h1>
-	<form action="{{ url_for('perebas') }}">
-		<button type="submit">Perebas</button>
-	</form></body>
+	<h3>Insira um arquivo json com as notas</h3>
+	<form action="{{ url_for('sorteado_arquivo') }}" method="post" enctype="multipart/form-data">
+		<input type="number" name = "n" placeholder="Quantidade de times">
+		<input type="number" name = "k" placeholder="Quantidade de jogadores">
+		<input type="file" name="jogadores.json">
+		<input type="submit" value="Enviar">
+	</form>
+	<h3>Ou insira a quantiade de times e jogadores por time para preencher as notas manualmente</h3>
+	<form action="{{ url_for('sorteado_manual') }}" method="post">
+		<input type="number" name = "n" id = "n" placeholder="Quantidade de times" min="0" oninput="gerarCampos()">
+		<input type="number" name = "k" id = "k" placeholder="Quantidade de jogadores" min="0" oninput="gerarCampos()">
+		<div id="campos">
+		</div>
+		<button type="button" onclick="baixarJSON()">Baixar JSON</button>
+		<button type="submit">Enviar</button>
+	</form>
 </html>

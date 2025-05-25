@@ -2,22 +2,48 @@
 <html>
 <head>
 	<title>Sorteio</title>
+	<script>
+		function gerarCampos() {
+			const container = document.getElementById('campos');
+			const times = parseInt(document.getElementById('n').value) || 0;
+			const quantidade = parseInt(document.getElementById('k').value) || 0;
+
+            // Limpa campos antigos
+			container.innerHTML = '';
+
+            // Cria novos inputs
+			for (let i = 0; i < times * quantidade; i++) {
+				const inputJogador = document.createElement('input');
+				inputJogador.type = 'text';
+				inputJogador.name = 'jogador_' + i;
+				inputJogador.placeholder = 'Jogador ' + (i + 1);
+				inputJogador.setAttribute('list', 'lista-jogadores');
+
+				container.appendChild(inputJogador);
+				container.appendChild(document.createElement('br'));
+			}
+		}
+	</script>
 </head>
 <body>
-	<h1>Notas dos todos os jogadores</h1>
+	<h1>Notas de todos os jogadores</h1>
 	<ul>
 		{% for chave, valor in dados.items() %}
 			<li><strong>{{ chave }}:</strong> {{ valor }}</li>
 		{% endfor %}
 	</ul>
-
-	<h1>Digite o nome dos jogadores participantes</h1>
-	<form method="post">
-		{% for _ in range(times*quantidade) %}
-			<ul>
-				<input type="text" name="jogador">
-			</ul>
+	<datalist id="lista-jogadores">
+		{% for jogador, valor in dados.items() %}
+			<option value="{{ jogador }}">
 		{% endfor %}
+	</datalist>
+
+	<h1>Digite a quantidade de times, tamanho dos times e o nome dos jogadores participantes</h1>
+	<form action="{{ url_for('sorteado_perebas') }}" method="post">
+		<input type="number" name = "n" id = "n" placeholder="Quantidade de times" min="0" oninput="gerarCampos()">
+		<input type="number" name = "k" id = "k" placeholder="Quantidade de jogadores" min="0" oninput="gerarCampos()">
+		<div id="campos">
+		</div>
 		<button type="submit">Enviar</button>
 	</form>
 </body>

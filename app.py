@@ -1,29 +1,59 @@
 from flask import Flask, render_template, request, redirect, url_for
+import json
 from Sorteador import Sorteador
+from notas_perebas import notas
 
 app = Flask(__name__)
-sorteador = Sorteador()
 
-@app.route('/')
+@app.route('/', methods=["GET"])
 def home():
 	return render_template('home.html')
 
-@app.route('/perebas')
+@app.route('/perebas/')
 def perebas():
-	n = request.args.get('n')
-	k = request.args.get('k')
-	if n and k:
-		return redirect(url_for('get_perebas', n = n, k = k))
-	return render_template('times_tamanho.html')
+	sorteador = Sorteador(notas)
+	return render_template('lista.html', dados = sorteador.notas)
 
-@app.route('/perebas/<n>/<k>', methods=["GET"])
-def get_perebas(n, k):
-	return render_template('lista.html', dados=sorteador.notas, times=int(n), quantidade=int(k))
 
-@app.route('/perebas/<n>/<k>', methods=["POST"])
-def post_perebas(n, k):
-	jogadores = request.form.getlist('jogador')
-	times = sorteador.sortear(jogadores, int(n), int(k))
+@app.route('/arquivo/', methods=["POST"])
+def sorteado_arquivo():
+	jogadores = json.loads(request.files["jogadores.json"].read())
+	sorteador = Sorteador(jogadores)
+	n = int(request.form.get('n'))
+	k = int(request.form.get('k'))
+	times = sorteador.sortear(jogadores.keys(), n, k)
+	return render_template('resultado-sorteio.html', times=times)
+
+@app.route('/manual/', methods=["POST"])
+def sorteado_manual():
+	n = int(request.form.get('n'))
+	k = int(request.form.get('k'))
+
+	dic = {}
+	jogadores=[]
+	for i in range(n * k):
+		jogador = request.form.get('jogador_' + str(i))
+		nota = float(request.form.get('nota_' + str(i)))
+		jogadores.append(jogador)
+		dic[jogador] = nota
+
+	sorteador = Sorteador(dic)
+	times = sorteador.sortear(jogadores, n, k)
+	return render_template('resultado-sorteio.html', times=times)
+
+
+@app.route('/perebas/manual/', methods=["POST"])
+def sorteado_perebas():
+	n = int(request.form.get('n'))
+	k = int(request.form.get('k'))
+
+	jogadores=[]
+	for i in range(n * k):
+		jogador = request.form.get('jogador_' + str(i))
+		jogadores.append(jogador)
+
+	sorteador = Sorteador(notas)
+	times = sorteador.sortear(jogadores, n, k)
 	return render_template('resultado-sorteio.html', times=times)
 
 if __name__ == '__main__':

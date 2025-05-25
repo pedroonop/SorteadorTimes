@@ -2,15 +2,8 @@ import random
 
 
 class Sorteador:
-	def __init__(self):
-		self.notas = {
-			'a': 1.0,
-			'b': 2.0,
-			'c': 3.0,
-			'd': 4.0
-		}
-
-
+	def __init__(self, notas):
+		self.notas = notas
 
 	def sortear1(self, lista, n, k):
 		ordem = [i for i in range(len(lista))]
