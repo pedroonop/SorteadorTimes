@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 import json
-from Sorteador import Sorteador
+from sorteador import Sorteador
 from notas_perebas import notas
+from parser import converte
 
 app = Flask(__name__)
 
@@ -21,8 +22,8 @@ def sorteado_arquivo():
 	sorteador = Sorteador(jogadores)
 	n = int(request.form.get('n'))
 	k = int(request.form.get('k'))
-	times = sorteador.sortear(jogadores.keys(), n, k)
-	return render_template('resultado-sorteio.html', times=times)
+	medias, times = sorteador.sortear(jogadores.keys(), n, k)
+	return render_template('resultado-sorteio.html', times=times, medias=medias)
 
 @app.route('/manual/', methods=["POST"])
 def sorteado_manual():
@@ -38,8 +39,8 @@ def sorteado_manual():
 		dic[jogador] = nota
 
 	sorteador = Sorteador(dic)
-	times = sorteador.sortear(jogadores, n, k)
-	return render_template('resultado-sorteio.html', times=times)
+	medias, times = sorteador.sortear(jogadores, n, k)
+	return render_template('resultado-sorteio.html', times=times, medias=medias)
 
 
 @app.route('/perebas/manual/', methods=["POST"])
@@ -53,8 +54,19 @@ def sorteado_perebas():
 		jogadores.append(jogador)
 
 	sorteador = Sorteador(notas)
-	times = sorteador.sortear(jogadores, n, k)
-	return render_template('resultado-sorteio.html', times=times)
+	medias, times = sorteador.sortear(jogadores, n, k)
+	return render_template('resultado-sorteio.html', times=times, medias=medias)
+
+@app.route('/perebas/arquivo/', methods=["POST"])
+def sorteado_lista_perebas():
+	n = int(request.form.get('n'))
+	k = int(request.form.get('k'))
+	lista = request.form.get('lista')
+
+	jogadores = converte(notas.keys(), lista)
+	sorteador = Sorteador(notas)
+	medias, times = sorteador.sortear(jogadores, n, k)
+	return render_template('resultado-sorteio.html', times=times, medias=medias)
 
 if __name__ == '__main__':
 	app.run(debug=True)

@@ -38,7 +38,16 @@
 		{% endfor %}
 	</datalist>
 
-	<h1>Digite a quantidade de times, tamanho dos times e o nome dos jogadores participantes</h1>
+	<h1>Digite a quantidade de times, tamanho dos times e cole a lista do racha</h1>
+	<form action="{{ url_for('sorteado_lista_perebas') }}" method="post">
+		<input type="number" name = "n" id = "n" placeholder="Quantidade de times" min="0">
+		<input type="number" name = "k" id = "k" placeholder="Quantidade de jogadores" min="0">
+		<input type="text" name = "lista" id = "lista" placeholder="Lista do Racha">
+		<button type="submit">Enviar</button>
+	</form>
+
+
+	<h1>Ou digite a quantidade de times, tamanho dos times e o nome dos jogadores participantes</h1>
 	<form action="{{ url_for('sorteado_perebas') }}" method="post">
 		<input type="number" name = "n" id = "n" placeholder="Quantidade de times" min="0" oninput="gerarCampos()">
 		<input type="number" name = "k" id = "k" placeholder="Quantidade de jogadores" min="0" oninput="gerarCampos()">

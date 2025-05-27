@@ -39,5 +39,7 @@ class Sorteador:
 				melhor_times = times
 				menor_dif = dif
 
-		return melhor_times
+		medias = [round(sum([jogador[1] for jogador in time]) / k, 3) for time in melhor_times]
+
+		return medias, melhor_times
 		

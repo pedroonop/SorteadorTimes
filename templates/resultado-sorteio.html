@@ -7,10 +7,11 @@
 	<h1>Resultado do Sorteio</h1>
 
 	{% for time in times %}
-		<h2>Time {{loop.index}}</h2>
-		{% for jogador in time %}
-			<li>{{ jogador[0] }} {{ jogador[1] }}</li>
+		<h2>Time {{loop.index}} - {{ medias[loop.index - 1] }}</h2>
+		{% for jogador, nota in time %}
+			<li>{{ jogador }} - {{ nota }}</li>
 		{% endfor %}
+		<br>
 	{% endfor %}
 
 	<button type="button" onclick="window.location.reload()">Sortear Novamente</button>
