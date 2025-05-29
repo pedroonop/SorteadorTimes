@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 import json
-from sorteador import Sorteador
-from notas_perebas import notas
-from parser import converte
+from app.sorteador import Sorteador
+from app.notas_perebas import notas
+from app.parser import converte
 
 app = Flask(__name__)
 
