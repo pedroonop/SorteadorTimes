@@ -49,8 +49,6 @@ def converte(base, lista_):
 	for i in range(len(lista_pre)):
 		lista_pre[i] = processa_palavra(lista_pre[i])
 
-	print(lista_pre)
-
 	result = []
 	for nome in lista_pre:
 		menor_dif = 10000
@@ -61,8 +59,6 @@ def converte(base, lista_):
 
 			compara = processa_palavra(compara_)
 			x = distancia_edicao(compara, nome)
-			# if nome == "manoel hudson":
-				# print(compara, x)
 			if x < menor_dif:
 				menor_dif = x
 				r = compara_

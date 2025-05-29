@@ -1,5 +1,5 @@
 notas = {
-	"Davi Lima": 1.50,
+	"Davi Silva": 1.50,
 	"Lucas Barbosa": 4.20,
 	"Gledson Junior": 4.60,
 	"Dhonatas Sousa": 2.10,
