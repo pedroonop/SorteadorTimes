@@ -60,5 +60,6 @@ notas = {
 	"Gabriel Braga": 2.8,
 	"Carlos Victor": 3.0,
 	"Leodecio Segundo": 3.8,
-	"Afonso Neto": 3.0
+	"Afonso Neto": 3.0,
+	"Breno Arraes": 2.5
 }
